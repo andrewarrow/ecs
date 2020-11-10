@@ -31,14 +31,19 @@ func AddStudent() {
 		return
 	}
 
+	maxId := int64(1000)
+	if len(school.Students) > 0 {
+		maxId = school.Students[len(school.Students)-1].Id
+	}
+
 	layout := "2006-01-02"
 	dobTime, _ := time.Parse(layout, dob)
 	s := Student{}
 	s.FirstName = fname
 	s.LastName = lname
 	s.DateOfBirth = dobTime
+	s.Id = maxId + 1
 
-	fmt.Println(s)
 	school.Students = append(school.Students, s)
 	SaveSchool()
 }

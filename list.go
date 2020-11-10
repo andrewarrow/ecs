@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func ListHelp() {
@@ -9,10 +10,11 @@ func ListHelp() {
 }
 
 func ListAll() {
-	for i, s := range school.Students {
+	for _, s := range school.Students {
 		dobString := fmt.Sprintf("%v", s.DateOfBirth)
 		dobString = dobString[0:10]
-		fmt.Printf("%03d. %20s, %20s  %20s\n", i+1, s.LastName, s.FirstName, dobString)
+		age := (time.Now().Unix() - s.DateOfBirth.Unix()) / 86400 / 365
+		fmt.Printf("%03d. %20s, %20s  %20s (%d)\n", s.Id, s.LastName, s.FirstName, dobString, age)
 	}
 	fmt.Println("")
 }

@@ -11,6 +11,7 @@ type School struct {
 }
 
 type Student struct {
+	Id          int64     `json:id"`
 	FirstName   string    `json:"fname"`
 	LastName    string    `json:"lname"`
 	DateOfBirth time.Time `json:"dob"`
